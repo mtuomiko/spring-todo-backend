@@ -3,7 +3,10 @@ package com.mtuomiko.springtodobackend;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +26,11 @@ public class Todo extends AbstractPersistable<Long> {
     private LocalDateTime updateTime;
 
     @ManyToOne
+    @JsonIgnore
     private Account account;
 
+    @NotBlank
     private String content;
+    @NotNull
     private Boolean done;
 }
