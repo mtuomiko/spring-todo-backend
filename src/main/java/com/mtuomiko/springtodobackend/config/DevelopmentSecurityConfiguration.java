@@ -19,7 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-@Profile("default")
+@Profile("development")
 @Configuration
 @EnableWebSecurity
 public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -45,6 +45,7 @@ public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/health").permitAll()
                 .anyRequest().authenticated();
 
         // Add JWT token filter

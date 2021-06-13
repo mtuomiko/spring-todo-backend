@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ValidationException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
@@ -24,5 +25,12 @@ public class CustomExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
                 .body(new CustomError("forbidden", ex.getMessage(), request.getRequestURI(), HttpStatus.FORBIDDEN.value()));
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<CustomError> validationExceptionHandler(HttpServletRequest request, ValidationException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new CustomError("bad request", ex.getMessage(), request.getRequestURI(), HttpStatus.BAD_REQUEST.value()));
     }
 }
