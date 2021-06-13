@@ -1,0 +1,55 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  deployment_pipeline:
+    # Don't run if no deployment tag specified
+    if: ${{ !contains(join(github.event.commits.*.message), '#no_pipeline') }}
+    runs-on: ubuntu-latest
+    steps:
+      # Initialize
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      # https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Gradle build
+        run: ./gradlew build
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
+      - name: Build and push Docker image to Heroku
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip_deploy') }}
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'mysterious-sea-75222'
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
+          healthcheck: "https://mysterious-sea-75222.herokuapp.com/health"
+          checkstring: "ok"
+          delay: 15
+          rollbackonhealthcheckfailed: true

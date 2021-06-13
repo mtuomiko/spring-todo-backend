@@ -45,7 +45,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public Account register(@RequestBody @Valid RegisterRequest request) {
         return customUserDetailsService.create(request);
     }
