@@ -1,7 +1,5 @@
 package com.mtuomiko.springtodobackend.config;
 
-import com.mtuomiko.springtodobackend.Account;
-import com.mtuomiko.springtodobackend.AccountRepository;
 import com.mtuomiko.springtodobackend.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

@@ -2,6 +2,7 @@ package com.mtuomiko.springtodobackend.controller;
 
 import com.mtuomiko.springtodobackend.*;
 import com.mtuomiko.springtodobackend.config.JwtUtils;
+import com.mtuomiko.springtodobackend.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

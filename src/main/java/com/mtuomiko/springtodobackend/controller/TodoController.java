@@ -1,9 +1,9 @@
 package com.mtuomiko.springtodobackend.controller;
 
 import com.mtuomiko.springtodobackend.Account;
-import com.mtuomiko.springtodobackend.AccountRepository;
+import com.mtuomiko.springtodobackend.repository.AccountRepository;
 import com.mtuomiko.springtodobackend.Todo;
-import com.mtuomiko.springtodobackend.TodoRepository;
+import com.mtuomiko.springtodobackend.repository.TodoRepository;
 import com.mtuomiko.springtodobackend.exception.NotAuthorizedException;
 import com.mtuomiko.springtodobackend.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
