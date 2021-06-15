@@ -22,10 +22,15 @@ public class HealthCheckTest {
 
     @Test
     public void healthCheckOk() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk());
+
         MvcResult result = mockMvc.perform(get("/health"))
                 .andExpect(status().isOk())
                 .andReturn();
 
         assertEquals(result.getResponse().getContentAsString(), "ok", "Health check body was not 'ok'");
+
+
     }
 }
