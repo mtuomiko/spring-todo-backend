@@ -25,7 +25,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-      # https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
+      # Gradle & caching https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
@@ -37,6 +37,10 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: Gradle build
         run: ./gradlew build
+      # Test
+      - name: Run all tests
+        run: ./gradlew test
+      # Clean Gradle cache
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
