@@ -38,8 +38,6 @@ jobs:
       # Build and run all tests
       - name: Gradle build and test
         run: ./gradlew build
-        env:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }} # the app needs some secret to run tests, doesn't matter what
       # Clean Gradle cache
       - name: Cleanup Gradle Cache
         run: |
