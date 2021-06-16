@@ -3,6 +3,7 @@ package com.mtuomiko.springtodobackend.config;
 import com.mtuomiko.springtodobackend.Account;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
 
@@ -10,7 +11,8 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
-    private final String jwtSecret = "hellothere";
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     public String generateToken(Account account) {
         Claims claims = Jwts.claims();

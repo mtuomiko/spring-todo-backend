@@ -37,3 +37,6 @@ out/
 .vscode/
 
 /database.mv.db
+
+# development jwt secret
+/src/main/resources/config/application.properties

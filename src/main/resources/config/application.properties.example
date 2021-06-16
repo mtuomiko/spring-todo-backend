@@ -1,0 +1,4 @@
+# You can use this file to provide a JWT secret in development. Rename this file to application.properties.
+# Spring will process this file after the general application.properties in parent folder and the secret defined here
+# will supersede the environment variable.
+jwt.secret=YOUR_VALUE
