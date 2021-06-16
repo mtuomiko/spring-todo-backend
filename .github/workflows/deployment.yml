@@ -35,11 +35,11 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Gradle build
+      # Build and run all tests
+      - name: Gradle build and test
         run: ./gradlew build
-      # Test
-      - name: Run all tests
-        run: ./gradlew test
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }} # the app needs some secret to run tests, doesn't matter what
       # Clean Gradle cache
       - name: Cleanup Gradle Cache
         run: |
