@@ -43,7 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public Account create(RegisterRequest request) {
         if (accountRepository.findByUsername(request.getUsername()) != null) {
-            throw new ValidationException("username exists");
+            throw new ValidationException("username already exists");
         }
 
         Account account = new Account();
