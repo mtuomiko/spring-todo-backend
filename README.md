@@ -1,5 +1,8 @@
 ## Spring Boot Todo backend with JWT and RESTful API
 
+![Build](https://github.com/mtuomiko/
+spring-todo-backend/actions/workflows/deployment.yml/badge.svg)
+
 Should become a simple todo app backend including user auth done with JWT.
 
 ### Running

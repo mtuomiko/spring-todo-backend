@@ -35,14 +35,18 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      # Build and run all tests
+
       - name: Gradle build and test
         run: ./gradlew build
-      # Clean Gradle cache
+
+      - name: Send data to Codecov
+        run: bash <(curl -s https://codecov.io/bash)
+
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
+
       - name: Build and push Docker image to Heroku
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip_deploy') }}
         uses: akhileshns/heroku-deploy@v3.12.12
