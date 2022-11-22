@@ -3,7 +3,9 @@
 ![Build](https://github.com/mtuomiko/spring-todo-backend/actions/workflows/deployment.yml/badge.svg)
 [![codecov](https://codecov.io/gh/mtuomiko/spring-todo-backend/branch/main/graph/badge.svg?token=9Q7TOWDLU8)](https://codecov.io/gh/mtuomiko/spring-todo-backend)
 
-Should become a simple todo app backend including user auth done with JWT.
+Simple todo app backend including user auth done with JWT.
+
+Application used to be hosted on Heroku free dynos under a generated app name `mysterious-sea-75222`. Currently not hosted anywhere.
 
 ### Running
 

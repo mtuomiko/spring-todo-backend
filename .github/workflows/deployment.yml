@@ -47,15 +47,15 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
-      - name: Build and push Docker image to Heroku
-        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip_deploy') }}
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'mysterious-sea-75222'
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          usedocker: true
-          healthcheck: "https://mysterious-sea-75222.herokuapp.com/health"
-          checkstring: "ok"
-          delay: 15
-          rollbackonhealthcheckfailed: true
+      # - name: Build and push Docker image to Heroku
+      #   if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip_deploy') }}
+      #   uses: akhileshns/heroku-deploy@v3.12.12
+      #   with:
+      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #     heroku_app_name: 'mysterious-sea-75222'
+      #     heroku_email: ${{secrets.HEROKU_EMAIL}}
+      #     usedocker: true
+      #     healthcheck: "https://mysterious-sea-75222.herokuapp.com/health"
+      #     checkstring: "ok"
+      #     delay: 15
+      #     rollbackonhealthcheckfailed: true
